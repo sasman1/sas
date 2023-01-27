@@ -4,7 +4,7 @@
     * [Direct](#read-data-direct)
     * [Read data from .txt](#read-data-from-txt)
     * [Read data from xlsx](#read-data-from-xlsx)
-
+* multiple linear regression](#multiple-linear-regression)
 ___
 
 #### Read data direct
@@ -48,5 +48,15 @@ proc import datafile = '/home/USERID/sasuser.v94/data.xlsx'
 	replace
 	;
 run;
+```
+___
+
+#### multiple linear regression
+```
+proc reg data=DATANAME;
+	model y = x1 x2;
+	title "title of the reg";
+run;
+
 ```
 
