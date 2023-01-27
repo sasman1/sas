@@ -130,6 +130,7 @@ quit;
 ___
 
 ## Lineare Regression
+doc. [PROC REG](https://documentation.sas.com/doc/en/statug/15.2/statug_reg_toc.htm)
 #### Syntax
 ```
 PROC REG <options>;
