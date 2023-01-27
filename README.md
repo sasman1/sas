@@ -11,10 +11,11 @@
     * [Join tables](#join-tables)
         * [By data operation](#by-data-operation)
 	    * [By proc sql operation](#by-proc-sql-operation)
-* [multiple linear regression](#multiple-linear-regression)
+* [Lineare Regression](#lineare-regression)
+	* [Multiple linear regression](#multiple-linear-regression)
 ___
 
-### Read Data
+## Read Data
 
 #### Read data direct
 ```
@@ -60,7 +61,7 @@ run;
 ```
 ___
 
-### Process Data
+## Process Data
 
 #### Combine tables
 
@@ -128,12 +129,41 @@ quit;
 ```
 ___
 
-#### multiple linear regression
+## Lineare Regression
+#### Syntax
+```
+PROC REG <options>;
+
+    <label:> MODEL dependents = <regressors> </ options>;
+    
+    BY variables;
+    
+    OUTPUT <OUT=SAS-data-set> <keyword=names> <…keyword=names>;
+
+    PAINT <condition |ALLOBS> </ options> |<STATUS |UNDO>;
+
+    PLOT <yvariable*xvariable> <=symbol> <…yvariable*xvariable> <=symbol> </ options>;
+
+    PRINT <options> <ANOVA> <MODELDATA>;
+
+    <label:> TEST equation, <, …, equation> </ option>;
+run;
+```
+
+#### The Model
+```
+MODEL dependents = <regressors> </ options>;
+```
+Useful options for the model
+```
+clb : 95% confidence interval
+```
+
+
+### Multiple linear regression
 ```
 proc reg data=DATANAME;
 	model y = x1 x2;
 	title "title of the reg";
 run;
-
 ```
-
