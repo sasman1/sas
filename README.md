@@ -3,6 +3,7 @@
 * Read Data
     * [Direct](#read-data-direct)
     * [Read data from .txt](#read-data-from-txt)
+    * [Read data from xlsx](#read-data-from-xlsx)
 
 ___
 
@@ -38,3 +39,14 @@ proc import file="/home/USERID/sasuser.v94/data.txt"
     replace;
 run;
 ```
+
+#### Read data from xlsx
+```
+proc import datafile = '/home/USERID/sasuser.v94/data.xlsx'
+	out  =  DATANAME
+	dbms =  xlsx
+	replace
+	;
+run;
+```
+
