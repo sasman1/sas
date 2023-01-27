@@ -1,9 +1,32 @@
 # SAS
 ## Table of contents
 * Read Data
+    * [Direct](#read-data-direct)
     * [Read data from .txt](#read-data-from-txt)
 
 ___
+
+#### Read data direct
+```
+data dataset;
+	input group value gender $;
+	datalines;
+	1 16 female
+	1 21 male
+	1 32 female
+	1 12 female
+	; 
+run;
+```
+equivalent to
+```
+data dataset;
+	input group value gender $ @@;
+	datalines;   
+	1 16 female 1 21 male 1 32 female 1 12 female
+	; 
+run;
+```
 
 #### Read data from txt
 ```
