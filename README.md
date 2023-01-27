@@ -9,7 +9,7 @@ ___
 #### Read data direct
 ```
 data dataset;
-	input group value gender $;
+	input group value gender $10.;
 	datalines;
 	1 16 female
 	1 21 male
@@ -18,10 +18,11 @@ data dataset;
 	; 
 run;
 ```
+`$10.` change length of the string to `10`
 equivalent to
 ```
 data dataset;
-	input group value gender $ @@;
+	input group value gender $10. @@;
 	datalines;   
 	1 16 female 1 21 male 1 32 female 1 12 female
 	; 
