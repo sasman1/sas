@@ -18,7 +18,8 @@ data dataset;
 	; 
 run;
 ```
-`$10.` change length of the string to `10`
+`$10.` changes the length of the string to `10`
+
 equivalent to
 ```
 data dataset;
