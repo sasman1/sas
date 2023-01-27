@@ -1,11 +1,20 @@
 # SAS
 ## Table of contents
-* Read Data
+* [Read Data](#read-data)
     * [Direct](#read-data-direct)
     * [Read data from .txt](#read-data-from-txt)
     * [Read data from xlsx](#read-data-from-xlsx)
+* [Process Data](#process-data)
+    * [Combine tables](#combine-tables)
+        * [By data operation](#by-data-operation)
+	    * [By proc sql operation](#by-proc-sql-operation)
+    * [Join tables](#join-tables)
+        * [By data operation](#by-data-operation)
+	    * [By proc sql operation](#by-proc-sql-operation)
 * [multiple linear regression](#multiple-linear-regression)
 ___
+
+### Read Data
 
 #### Read data direct
 ```
@@ -48,6 +57,74 @@ proc import datafile = '/home/USERID/sasuser.v94/data.xlsx'
 	replace
 	;
 run;
+```
+___
+
+### Process Data
+
+#### Combine tables
+
+##### By data operation
+```
+data table_2;
+	merge table_21 table_22;
+	by patient;
+run;
+```
+
+##### By proc sql operation
+```
+proc sql;
+    create table table_1 as
+    select patient, geschlecht
+    from table_11
+    union 
+    select *    
+    from table_12
+    ;
+quit;
+```
+
+oder:
+
+```
+proc sql;
+    create table table_2 as
+    select *
+    from table_21 join table_22 
+    on table_21.patient = table_22.patient
+    ;
+quit;
+```
+
+#### Join tables
+
+##### By data operation
+```
+data table_1;
+	set table_11 table_12;
+run;
+```
+
+##### By proc sql operation
+```
+proc sql;
+    create table table_2 as
+    select table_21.*, table_22.schuhgroesse
+    from table_21, table_22
+  	where table_21.patient=table_22.patient
+    ;
+quit;
+```
+oder:
+```
+proc sql;
+    create table table_2 as
+    select *
+    from table_21 join table_22 
+    on table_21.patient = table_22.patient
+    ;
+quit;
 ```
 ___
 
