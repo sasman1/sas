@@ -4,7 +4,7 @@
     * [Direct](#read-data-direct)
     * [Read data from .txt](#read-data-from-txt)
     * [Read data from xlsx](#read-data-from-xlsx)
-* multiple linear regression](#multiple-linear-regression)
+* [multiple linear regression](#multiple-linear-regression)
 ___
 
 #### Read data direct
