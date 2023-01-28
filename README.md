@@ -386,7 +386,7 @@ run;
 * values of the variable: `value`
 
 example data: [here](#read-direct-categorical-data)
-```
+```sas
 proc glm data=DATANAME;
 	class methode;
 	model value = methode;
