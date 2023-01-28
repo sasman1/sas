@@ -14,12 +14,10 @@
 	    * [By proc sql operation](#by-proc-sql-operation)
 * [Lineare Regression](#lineare-regression)
 	* [Multiple linear regression](#multiple-linear-regression)
-		* [Forward selection](#forward-selection)
-
+		* [Forward selection (Bottom-Up)](#forward-selection-bottom-up)
 * [Plots](#plots)
 	* [Simple Plot](#simple-plot)
 	* [Scatter Plot](#scatter-plot)
-
 * [Metrics](#metrics)
 	[Pearson correlations]($pearson-correlations)
 ___
@@ -191,7 +189,7 @@ proc reg data=DATANAME;
 run;
 ```
 
-#### Forward selection
+#### Forward selection (Bottom-Up)
 Plots the AIC to the diagnostics output. 
 ```
 proc reg data=mtcars plots=diagnostics(stats=(default AIC));
