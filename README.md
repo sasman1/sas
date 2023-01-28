@@ -55,6 +55,26 @@ data dataset;
 	; 
 run;
 ```
+if you want to read categorical data, you may use this syntax
+```sas
+data dataset;
+	input methode $9. value;
+	datalines; 
+	Methode1 15
+	Methode1 24
+	Methode1 32
+	Methode1 43
+	Methode2 555
+	Methode2 65
+	Methode2 671
+	Methode2 617
+	Methode3 65
+	Methode3 6762
+	Methode3 663
+	Methode3 626
+	;  
+run; 
+```
 
 #### Read data from `txt`
 ```sas
