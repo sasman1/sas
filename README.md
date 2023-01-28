@@ -44,13 +44,13 @@ ___
 #### Read data direct
 ```sas
 data dataset;
-	input group value gender $10.;
-	datalines;
-	1 16 female
-	1 21 male
-	1 32 female
-	1 12 female
-	; 
+input group value gender $10.;
+datalines;
+1 16 female
+1 21 male
+1 32 female
+1 12 female
+; 
 run;
 ```
 `$10.` changes the length of the string to `10`
@@ -58,10 +58,10 @@ run;
 equivalent to
 ```sas
 data dataset;
-	input group value gender $10. @@;
-	datalines;   
-	1 16 female 1 21 male 1 32 female 1 12 female
-	; 
+input group value gender $10. @@;
+datalines;   
+1 16 female 1 21 male 1 32 female 1 12 female
+; 
 run;
 ```
 
@@ -69,21 +69,21 @@ run;
 if you want to read categorical data, you may use this syntax
 ```sas
 data dataset;
-	input methode $9. value;
-	datalines; 
-	Methode1 15
-	Methode1 24
-	Methode1 32
-	Methode1 43
-	Methode2 555
-	Methode2 65
-	Methode2 671
-	Methode2 617
-	Methode3 65
-	Methode3 6762
-	Methode3 663
-	Methode3 626
-	;  
+input methode $ value;
+datalines; 
+Methode1 15
+Methode1 24
+Methode1 32
+Methode1 43
+Methode2 555
+Methode2 65
+Methode2 671
+Methode2 617
+Methode3 65
+Methode3 6762
+Methode3 663
+Methode3 626
+;  
 run; 
 ```
 
