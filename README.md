@@ -13,6 +13,13 @@
 	    * [By proc sql operation](#by-proc-sql-operation)
 * [Lineare Regression](#lineare-regression)
 	* [Multiple linear regression](#multiple-linear-regression)
+
+* [Plots](#plots)
+	* [Simple Plot](#simple-plot)
+	* [Scatter Plot](#scatter-plot)
+
+* [Metrics](#metrics)
+	[Pearson correlations]($pearson-correlations)
 ___
 
 ## Read Data
@@ -168,3 +175,36 @@ proc reg data=DATANAME;
 	title "title of the reg";
 run;
 ```
+___
+
+## Plots
+
+### Simple Plot
+`x` vs `y`
+```
+proc gplot data=DATANAME;
+	plot y*x;
+	title "x vs y";
+run;
+```
+
+### Scatter Plot
+including regression line
+```
+proc sgplot data=DATANAME noautolegend;
+	reg y=YVALUES x=XVALUES;
+	title "x vs y";
+run;
+```
+
+___
+
+## Metrics
+### Pearson correlations
+The Pearson correlations of `x` and `y`.
+```
+proc corr data=DATANAME;
+	var x y;
+run;
+```
+
