@@ -6,6 +6,7 @@
     * [Read data from .txt](#read-data-from-txt)
     * [Read data from xlsx](#read-data-from-xlsx)
     * [Read data from csv](#read-data-from-csv)
+* [Conditions](#conditions)
 * [Process Data](#process-data)
     * [Data Statement](#data-statement)
     * [Combine tables](#combine-tables)
@@ -17,6 +18,7 @@
     * [Modify dataset](#modify-dataset)
     * [Delete rows from dataset](#delete-rows-from-dataset)
     * [Delete columns from dataset](#delete-columns-from-dataset)
+    * [Sort dataset](#sort-dataset)
 * [Lineare Regression](#lineare-regression)
 	* [Multiple linear regression](#multiple-linear-regression)
 		* [Forward selection (Bottom-Up)](#forward-selection-bottom-up)
@@ -111,6 +113,19 @@ proc import datafile = '/home/USERID/sasuser.v94/data.csv'
 	dbms =  csv
 	replace;
 	delimiter=",";
+run;
+```
+___
+
+## Conditions
+
+```sas
+data bsp1_modif_3;
+	set bsp1_modif;
+	length ergebnis $200.;
+	if wert2 lt 100 then ergebnis="Kleiner Wert";
+	else if wert2 ge 100 then ergebnis="Gro�er Wert";
+	else put "INFO: Please check value of variable wert2 for = " wert2;
 run;
 ```
 ___
@@ -235,6 +250,13 @@ By selecting the columns that should be kept:
 data bsp1_modif_2;
 	set bsp1;
 	keep gruppe;
+run;
+```
+
+#### Sort dataset
+```sas
+proc sort data=bsp1 out=bsp1_sorted; /* default of out is the dataset from data */
+	by /* default is descending */ gruppe;
 run;
 ```
 ___
