@@ -2,6 +2,7 @@
 ## Table of contents
 * [Read Data](#read-data)
     * [Direct](#read-data-direct)
+    	* [Categorical Data](#read-direct-categorical-data)
     * [Read data from .txt](#read-data-from-txt)
     * [Read data from xlsx](#read-data-from-xlsx)
     * [Read data from csv](#read-data-from-csv)
@@ -29,6 +30,7 @@
 	* [Pearson correlations](#pearson-correlations)
 * [Tests](#tests)
 	* [Kruskal-Wallis-Test](#kruskal-wallis-test)
+	* [Tukey-HSD-Test](#tukey-hsd-test)
 * [Tips and Tricks](#tips-and-tricks)
 ___
 
@@ -57,6 +59,8 @@ data dataset;
 	; 
 run;
 ```
+
+##### Read direct categorical data
 if you want to read categorical data, you may use this syntax
 ```sas
 data dataset;
@@ -367,11 +371,26 @@ ___
 ## Tests
 ### Kruskal-Wallis-Test
 * categorical variable: `methode`
-* values of the variable: `value` 
+* values of the variable: `value`
+
+example data: [here](#read-direct-categorical-data)
 ```sas
 proc npar1way data=DATANAME wilcoxon;
 	class methode;
 	var value;
+run;
+```
+
+### Tukey-HSD-Test
+* categorical variable: `methode`
+* values of the variable: `value`
+
+example data: [here](#read-direct-categorical-data)
+```
+proc glm data=DATANAME;
+	class methode;
+	model value = methode;
+	means methode / tukey cldiff ;
 run;
 ```
 
