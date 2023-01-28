@@ -176,8 +176,9 @@ MODEL dependents = <regressors> </ options>;
 Useful options for the model
 ```
 clb : 95% confidence interval
-```
 
+SLENTRY=value : specifies the significance level for entry into the model used in the FORWARD and STEPWISE methods. The defaults are 0.50 for FORWARD and 0.15 for STEPWISE. 
+```
 
 ### Multiple linear regression
 ```
@@ -186,6 +187,8 @@ proc reg data=DATANAME;
 	title "title of the reg";
 run;
 ```
+
+
 ___
 
 ## Plots
