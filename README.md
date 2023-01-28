@@ -26,7 +26,9 @@
 	* [Histgram](#histogram)
 * [Metrics](#metrics)
 	* [Means](#means)
-	* [Pearson correlations]($pearson-correlations)
+	* [Pearson correlations](#pearson-correlations)
+* [Tests](#tests)
+	* [Kruskal-Wallis-Test](#kruskal-wallis-test)
 * [Tips and Tricks](#tips-and-tricks)
 ___
 
@@ -358,6 +360,18 @@ The Pearson correlations of `x` and `y`.
 ```sas
 proc corr data=DATANAME;
 	var x y;
+run;
+```
+___
+
+## Tests
+### Kruskal-Wallis-Test
+* categorical variable: `methode`
+* values of the variable: `value` 
+```sas
+proc npar1way data=DATANAME wilcoxon;
+	class methode;
+	var value;
 run;
 ```
 
