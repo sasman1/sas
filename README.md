@@ -19,7 +19,8 @@
 	* [Simple Plot](#simple-plot)
 	* [Scatter Plot](#scatter-plot)
 * [Metrics](#metrics)
-	[Pearson correlations]($pearson-correlations)
+	* [Means](#means)
+	* [Pearson correlations]($pearson-correlations)
 ___
 
 ## Read Data
@@ -230,6 +231,13 @@ run;
 ___
 
 ## Metrics
+### Means
+```
+proc means data=DATANAME maxdec=2 min max mean median Q1 Q3 std;
+	var x;
+run;
+```
+
 ### Pearson correlations
 The Pearson correlations of `x` and `y`.
 ```
