@@ -37,6 +37,7 @@
 	* [Two-sample t-test](#two-sample-t-test)
 	* [Kruskal-Wallis-Test](#kruskal-wallis-test)
 	* [Tukey-HSD-Test](#tukey-hsd-test)
+	* [Bonferroni-Holm correction](#bonferroni-Holm-correction)
 * [Tips and Tricks](#tips-and-tricks)
 ___
 
@@ -468,6 +469,13 @@ proc glm data=DATANAME;
 	class methode;
 	model value = methode;
 	means methode / tukey cldiff ;
+run;
+```
+
+### Bonferroni-Holm correction
+`p_values` contains p-Values from a t-test under `Probt`
+```sas
+proc multtest inpvalues=p_values(rename=(Probt=raw_p)) out=p_values_adj(drop=method variances df) holm;
 run;
 ```
 
