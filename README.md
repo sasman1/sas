@@ -14,6 +14,9 @@
     * [Join tables](#join-tables)
 		* [By data operation](#by-data-operation)
 		* [By proc sql operation](#by-proc-sql-operation)
+    * [Modify dataset](#modify-dataset)
+    * [Delete rows from dataset](#delete-rows-from-dataset)
+    * [Delete columns from dataset](#delete-columns-from-dataset)
 * [Lineare Regression](#lineare-regression)
 	* [Multiple linear regression](#multiple-linear-regression)
 		* [Forward selection (Bottom-Up)](#forward-selection-bottom-up)
@@ -195,6 +198,44 @@ proc sql;
     on table_21.patient = table_22.patient
     ;
 quit;
+```
+
+#### Modify dataset
+
+```sas
+data bsp1_modif;
+	set bsp1; 
+	length wert2 8.0; /* specify length of variable */
+	wert2 = wert**2;
+run;
+```
+
+#### Delete rows from dataset
+
+```sas
+data bsp1_modif_1;
+	set bsp1;
+	if gruppe lt 2 then delete;
+run;
+```
+
+#### Delete columns from dataset
+
+By selecting the columns that should be deleted:
+
+```sas
+data bsp1_modif_2;
+	set bsp1;
+	drop wert;
+run;
+```
+By selecting the columns that should be kept:
+
+```sas
+data bsp1_modif_2;
+	set bsp1;
+	keep gruppe;
+run;
 ```
 ___
 
