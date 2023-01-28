@@ -229,7 +229,7 @@ proc sgplot data=DATANAME noautolegend;
 run;
 ```
 
-### Histgram
+### Histogram
 with density curve
 ```
 proc sgplot data=DATANAME;
