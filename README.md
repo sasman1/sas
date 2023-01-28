@@ -22,6 +22,7 @@
 * [Metrics](#metrics)
 	* [Means](#means)
 	* [Pearson correlations]($pearson-correlations)
+* [Tips and Tricks](#tips-and-tricks)
 ___
 
 ## Read Data
@@ -256,3 +257,12 @@ proc corr data=DATANAME;
 run;
 ```
 
+___
+## Tips and Tricks
+Gegen Streuung der Daten: `log`
+```
+data DATANAME;
+	set DATANAME;
+	log_x = log(x);
+run;
+```
