@@ -16,7 +16,9 @@
 * [Lineare Regression](#lineare-regression)
 	* [Multiple linear regression](#multiple-linear-regression)
 		* [Forward selection (Bottom-Up)](#forward-selection-bottom-up)
-	* [Category Variables](#category-variables)
+	* [Category Variables](#lineare-regression-with-a-category-variables)
+* [Logistic Regression](#logistic-regression)
+	* [Category Variables](#logistic-regression-with-a-category-variables)
 * [Plots](#plots)
 	* [Simple Plot](#simple-plot)
 	* [Scatter Plot](#scatter-plot)
@@ -243,17 +245,35 @@ proc reg data=DATANAME plots=diagnostics(stats=(default AIC));
 run;
 ```
 
-### Category Variables
-
-with glm
+### Lineare Regression with a category variables
+with `glm` ([docs](https://documentation.sas.com/doc/en/statug/15.2/statug_glm_toc.htm))
+default encoding: reference-cell coding (Dummy-Coding)
 e.g.
+* kv can be `low`, `middle` and `high`.
+* `(ref='high')` : sets the reference level (category) to: `high` 
+```
+proc glm data=DATANAME;
+	class kv (ref='high');
+	model y = kv / solution ss3;; 
+run;
+```
+with `glmselect`
+```
+proc glmselect data=DATANAME;
+	class kv (ref='high');
+	model y = kv;; 
+run;
+```
+
+## Logistic Regression
+### Logistic Regression with a category variables
 * kv can be `low`, `middle` and `high`.
 * `(ref='high')` : sets the reference level (category) to: `high` 
 * `param=reference` : sets the coding to: Reference cell coding (Dummy-Coding)
 ```
-proc glm data=DATANAME;
+proc logistic data=DATANAME;
 	class kv (ref='high') param=reference;
-	model y = kv / solution ss3;; 
+	model y = kv;
 run;
 ```
 
