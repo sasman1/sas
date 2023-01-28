@@ -6,12 +6,13 @@
     * [Read data from xlsx](#read-data-from-xlsx)
     * [Read data from csv](#read-data-from-csv)
 * [Process Data](#process-data)
+    * [Data Statement](#data-statement)
     * [Combine tables](#combine-tables)
         * [By data operation](#by-data-operation)
-	    * [By proc sql operation](#by-proc-sql-operation)
+	* [By proc sql operation](#by-proc-sql-operation)
     * [Join tables](#join-tables)
         * [By data operation](#by-data-operation)
-	    * [By proc sql operation](#by-proc-sql-operation)
+	* [By proc sql operation](#by-proc-sql-operation)
 * [Lineare Regression](#lineare-regression)
 	* [Multiple linear regression](#multiple-linear-regression)
 		* [Forward selection (Bottom-Up)](#forward-selection-bottom-up)
@@ -82,6 +83,24 @@ run;
 ___
 
 ## Process Data
+
+### Data Statement
+[doc](https://documentation.sas.com/doc/en/pgmsascdc/9.4_3.5/ds2ref/n1ew9uzutoyamjn1kzz8f194xhes.htm)
+
+e.g. split data with `if`
+```
+data DATA1 DATA2;
+	set INPUT_DATA;
+	if x lt 10 then output DATA1;
+	else if x ge 10 then output DATA2;
+	drop COL1 COL2;
+run;
+```
+or u can `delete`
+```
+if x gt 10 then delete;
+```
+
 
 #### Combine tables
 
@@ -181,7 +200,7 @@ plots=diagnostics(stats=(default AIC)) : plots the AIC
 ```
 MODEL dependents = <regressors> </ options>;
 ```
-Useful options for the model
+Useful options for the `model`
 ```
 clb : 95% confidence interval
 
@@ -190,6 +209,17 @@ SELECTION=name : name can be FORWARD, BACKWARD, STEPWISE, MAXR, MINR, RSQUARE, A
 SLENTRY=value : specifies the significance level for entry into the model used in the FORWARD and STEPWISE methods. The defaults are 0.50 for FORWARD and 0.15 for STEPWISE.
 
 SLSTAY=value : specifies the significance level for staying in the model for the BACKWARD and STEPWISE methods. The defaults are 0.10 for BACKWARD and 0.15 for STEPWISE.
+
+noint : no intercept
+```
+
+#### The Output
+```
+OUTPUT <OUT=SAS-data-set> <keyword=names> <…keyword=names>;
+```
+Usefull options for the `output`
+```
+output out=DATASETNAME h=h_hat cookd=D; : Hebelwerte h_hat und Cook-Distanzen D
 ```
 
 ### Multiple linear regression
