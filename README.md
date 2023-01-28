@@ -18,6 +18,7 @@
 * [Plots](#plots)
 	* [Simple Plot](#simple-plot)
 	* [Scatter Plot](#scatter-plot)
+	* [Histgram](#histogram)
 * [Metrics](#metrics)
 	* [Means](#means)
 	* [Pearson correlations]($pearson-correlations)
@@ -225,6 +226,15 @@ including regression line
 proc sgplot data=DATANAME noautolegend;
 	reg y=YVALUES x=XVALUES;
 	title "x vs y";
+run;
+```
+
+### Histgram
+with density curve
+```
+proc sgplot data=DATANAME;
+	histogram x;
+	density x;
 run;
 ```
 
