@@ -222,6 +222,8 @@ run;
 ```
 
 ### Scatter Plot
+[doc](https://documentation.sas.com/doc/en/pgmsascdc/9.4_3.5/grstatproc/n0yjdd910dh59zn1toodgupaj4v9.htm)
+
 including regression line
 ```
 proc sgplot data=DATANAME noautolegend;
