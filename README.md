@@ -4,6 +4,7 @@
     * [Direct](#read-data-direct)
     * [Read data from .txt](#read-data-from-txt)
     * [Read data from xlsx](#read-data-from-xlsx)
+    * [Read data from csv](#read-data-from-csv)
 * [Process Data](#process-data)
     * [Combine tables](#combine-tables)
         * [By data operation](#by-data-operation)
@@ -48,7 +49,7 @@ data dataset;
 run;
 ```
 
-#### Read data from txt
+#### Read data from `txt`
 ```
 proc import file="/home/USERID/sasuser.v94/data.txt"
     out=DATANAME
@@ -57,13 +58,23 @@ proc import file="/home/USERID/sasuser.v94/data.txt"
 run;
 ```
 
-#### Read data from xlsx
+#### Read data from `xlsx`
 ```
 proc import datafile = '/home/USERID/sasuser.v94/data.xlsx'
 	out  =  DATANAME
 	dbms =  xlsx
 	replace
 	;
+run;
+```
+
+#### Read data from `csv`
+```
+proc import datafile = '/home/USERID/sasuser.v94/data.csv'
+	out  =  DATANAME
+	dbms =  csv
+	replace;
+	delimiter=",";
 run;
 ```
 ___
