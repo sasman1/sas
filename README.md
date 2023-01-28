@@ -167,6 +167,12 @@ PROC REG <options>;
     <label:> TEST equation, <, …, equation> </ option>;
 run;
 ```
+Usefull options for `proc reg`
+```
+OUTEST=DATASETNAME : Outputs a data set that contains parameter estimates and other model fit summary statistics.
+
+plots=diagnostics(stats=(default AIC)) : plots the AIC
+```
 
 #### The Model
 ```
