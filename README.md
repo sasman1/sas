@@ -34,6 +34,7 @@
 	* [Means](#means)
 	* [Pearson correlations](#pearson-correlations)
 * [Tests](#tests)
+	* [Two-sample t-test](#two-sample-t-test)
 	* [Kruskal-Wallis-Test](#kruskal-wallis-test)
 	* [Tukey-HSD-Test](#tukey-hsd-test)
 * [Tips and Tricks](#tips-and-tricks)
@@ -432,6 +433,19 @@ run;
 ___
 
 ## Tests
+
+### Two-sample t-test
+* make a Two-sample t-test with a categorical variable: `methode`
+* save the t-value and p-value to `pvalOut`
+* H0: μx = μy  vs  H1: μx != μy
+```
+proc ttest data = DATANAME(where=(methode ne 'Methode3'));
+	class methode; 
+	var value;
+	ods output ttests=pvalOut(where=(method eq 'Gepoolt'));
+run;
+```
+
 ### Kruskal-Wallis-Test
 * categorical variable: `methode`
 * values of the variable: `value`
