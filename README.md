@@ -16,6 +16,7 @@
 * [Lineare Regression](#lineare-regression)
 	* [Multiple linear regression](#multiple-linear-regression)
 		* [Forward selection (Bottom-Up)](#forward-selection-bottom-up)
+		* [Category Variables with Interaction](#category-variables-with-interaction)
 	* [Category Variables](#lineare-regression-with-a-category-variables)
 * [Logistic Regression](#logistic-regression)
 	* [Category Variables](#logistic-regression-with-a-category-variables)
@@ -244,6 +245,18 @@ proc reg data=DATANAME plots=diagnostics(stats=(default AIC));
 	model y = x1 x2 x3 x4 / selection=forward;
 run;
 ```
+
+#### Category Variables with Interaction
+e.g.
+* kv1 can be `low`, `middle` and `high`
+* kv2 can be `a`, `b` and `c`
+```
+proc glm data=DATANAME;
+	class kv1 kv2;
+	model y = x kv1 kv2 kv1*kv2 / solution ss3;
+run;
+```
+
 
 ### Lineare Regression with a category variables
 with `glm` ([docs](https://documentation.sas.com/doc/en/statug/15.2/statug_glm_toc.htm))
