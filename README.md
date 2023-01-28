@@ -14,6 +14,7 @@
 	    * [By proc sql operation](#by-proc-sql-operation)
 * [Lineare Regression](#lineare-regression)
 	* [Multiple linear regression](#multiple-linear-regression)
+		* [Forward selection](#forward-selection)
 
 * [Plots](#plots)
 	* [Simple Plot](#simple-plot)
@@ -177,7 +178,9 @@ Useful options for the model
 ```
 clb : 95% confidence interval
 
-SLENTRY=value : specifies the significance level for entry into the model used in the FORWARD and STEPWISE methods. The defaults are 0.50 for FORWARD and 0.15 for STEPWISE. 
+SLENTRY=value : specifies the significance level for entry into the model used in the FORWARD and STEPWISE methods. The defaults are 0.50 for FORWARD and 0.15 for STEPWISE.
+
+SELECTION=name : name can be FORWARD, BACKWARD, STEPWISE, MAXR, MINR, RSQUARE, ADJRSQ, CP, or NONE (use the full model).
 ```
 
 ### Multiple linear regression
@@ -188,6 +191,13 @@ proc reg data=DATANAME;
 run;
 ```
 
+#### Forward selection
+Plots the AIC to the diagnostics output. 
+```
+proc reg data=mtcars plots=diagnostics(stats=(default AIC));
+	model y = x1 x2 x3 x4 / selection=forward;
+run;
+```
 
 ___
 
