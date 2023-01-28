@@ -438,7 +438,7 @@ ___
 * make a Two-sample t-test with a categorical variable: `methode`
 * save the t-value and p-value to `pvalOut`
 * H0: μx = μy  vs  H1: μx != μy
-```
+```sas
 proc ttest data = DATANAME(where=(methode ne 'Methode3'));
 	class methode; 
 	var value;
