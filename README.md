@@ -16,6 +16,7 @@
 * [Lineare Regression](#lineare-regression)
 	* [Multiple linear regression](#multiple-linear-regression)
 		* [Forward selection (Bottom-Up)](#forward-selection-bottom-up)
+	* [Category Variables](#category-variables)
 * [Plots](#plots)
 	* [Simple Plot](#simple-plot)
 	* [Scatter Plot](#scatter-plot)
@@ -211,6 +212,10 @@ SLENTRY=value : specifies the significance level for entry into the model used i
 SLSTAY=value : specifies the significance level for staying in the model for the BACKWARD and STEPWISE methods. The defaults are 0.10 for BACKWARD and 0.15 for STEPWISE.
 
 noint : no intercept
+
+SS3 : Displays Type III sum of squares
+
+solution: show parameter estimates in glm
 ```
 
 #### The Output
@@ -233,8 +238,22 @@ run;
 #### Forward selection (Bottom-Up)
 Plots the AIC to the diagnostics output. 
 ```
-proc reg data=mtcars plots=diagnostics(stats=(default AIC));
+proc reg data=DATANAME plots=diagnostics(stats=(default AIC));
 	model y = x1 x2 x3 x4 / selection=forward;
+run;
+```
+
+### Category Variables
+
+with glm
+e.g.
+* kv can be `low`, `middle` and `high`.
+* `(ref='high')` : sets the reference level (category) to: `high` 
+* `param=reference` : sets the coding to: Reference cell coding (Dummy-Coding)
+```
+proc glm data=DATANAME;
+	class kv (ref='high') param=reference;
+	model y = kv / solution ss3;; 
 run;
 ```
 
