@@ -39,6 +39,8 @@
 	* [Tukey-HSD-Test](#tukey-hsd-test)
 	* [Bonferroni-Holm correction](#bonferroni-Holm-correction)
 * [Tips and Tricks](#tips-and-tricks)
+* [Examples](#examples)
+	* [manual ANCOVA](#manual-ancova)
 ___
 
 ## Read Data
@@ -493,4 +495,77 @@ data DATANAME;
 	set DATANAME;
 	log_x = log(x);
 run;
+```
+___
+## Examples
+
+### manual ANCOVA
+* `wachsum` is numeric
+* `gewicht` is numeric
+* `futter` is categorical and can be `1`, `2` and `3`
+
+```sas
+/* read data from a xlsx file */
+proc import datafile = '/path/to/data.xlsx'
+	out  =  data_futter
+	dbms =  xlsx
+	replace;
+run;
+
+/* make a lineare regression */
+proc reg data=data_futter;
+	model wachstum = gewicht;
+run;
+
+/* sort the data by 'futter' */
+proc sort data=data_futter out=futter_sorted;
+	by futter;
+run;
+
+/* culc. means for each category of 'futter' and save them to 'futter_means' */
+proc means data=futter_sorted;
+	by futter;
+	var gewicht wachstum;
+	output out=futter_means(where=(_STAT_ eq 'MEAN') keep=_STAT_ futter gewicht wachstum);
+run;
+
+/* join the 'futter_sorted' and 'futter_means' datasets */
+proc sql;
+	create table futter_with_means as
+	select futter_sorted.*, futter_means.wachstum as mean_wachstum, futter_means.gewicht as mean_gewicht
+	from futter_sorted
+	join futter_means
+	on futter_sorted.futter = futter_means.futter;
+quit;
+
+/* culc. beta and append it to the 'futter_with_means' dataset */
+proc sql;
+	create table futter_with_means_beta as
+	select 
+		futter_with_means.*,
+		sum(
+			(gewicht - mean_gewicht) * (wachstum - mean_wachstum))
+			/
+			sum((gewicht-mean_gewicht)**2
+		) as beta
+	from futter_with_means;
+quit;
+
+/* culc. alpha and append it to the 'futter_with_means_beta' dataset */
+proc sql;
+	create table futter_with_means_beta_alpha as
+	select 
+		futter_with_means_beta.*,
+		(mean_wachstum - beta * mean_gewicht) as alpha
+	from futter_with_means_beta;
+quit;
+
+/* culc. SQe and append it to the 'futter_with_means_beta_alpha' dataset */
+proc sql;
+	create table futter_with_means_beta_alpha_SQe as
+	select
+		futter_with_means_beta_alpha.*,
+		sum((wachstum - alpha - beta*gewicht)**2) as SQe
+	from futter_with_means_beta_alpha;
+quit;
 ```
