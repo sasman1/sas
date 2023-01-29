@@ -26,6 +26,7 @@
 	* [Category Variables](#lineare-regression-with-a-category-variables)
 * [Logistic Regression](#logistic-regression)
 	* [Category Variables](#logistic-regression-with-a-category-variables)
+* [ANCOVA](#ancova)
 * [Plots](#plots)
 	* [Simple Plot](#simple-plot)
 	* [Scatter Plot](#scatter-plot)
@@ -381,6 +382,15 @@ proc logistic data=DATANAME;
 	class kv (ref='high') param=reference;
 	model y = kv;
 run;
+```
+
+## ANCOVA
+```sas
+proc glm data=DATANAME;
+	class kv;
+	model y = x kv / ss1 solution;
+	title "ANCOVA";
+run; 
 ```
 
 ___
