@@ -423,6 +423,12 @@ proc means data=DATANAME maxdec=2 min max mean median Q1 Q3 std;
 	var x;
 run;
 ```
+##### Means with two categorical variables
+```sas
+proc means data = DATANAME;
+	by kv1 kv2;
+run;
+```
 
 ### Pearson correlations
 The Pearson correlations of `x` and `y`.
